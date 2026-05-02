@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Impossible de récupérer les emails' }, { status: 500 })
   }
 
-  const uniqueEmails = [...new Set((entries ?? []).map((e: any) => e.email as string))]
+  const uniqueEmails = Array.from(new Set((entries ?? []).map((e: any) => e.email as string)))
 
   if (uniqueEmails.length === 0) {
     return NextResponse.json({ sent: 0, total: 0 })
